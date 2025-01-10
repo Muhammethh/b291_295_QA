@@ -1,42 +1,55 @@
 package com.myfirstSeleniumProject;
 
 import com.myfirstSeleniumProject.utilities.TestBase;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.time.Duration;
-
-public class n01_day04_Xpath extends TestBase {
+public class n01_d06_Xpath_Checkbox extends TestBase {
 
 
-    // Create a class : Locators
-    // Create a class: Locators
-    // When user goes to :
-    // https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
-    // And enter username
-    // And enter password
-    // And click on submit button
-    // Then verify the login is successful
-    // Then logout the application
-    // Then verify the logout is successful
+    @Test
+    public void checkBox() {
 
-   // static WebDriver driver;
 
-    /*@BeforeAll
-    public static void setUp() {
+        //Create test method and complete the following task.
+        //Go to https://testcenter.techproeducation.com/index.php?page=checkboxes
 
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        driver.get("https://testcenter.techproeducation.com/index.php?page=checkboxes");
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //Locate the elements of checkboxes
 
-    }*/
+        WebElement checkbox1 = driver.findElement(By.xpath("//input[@name='checkbox1']"));
+
+        WebElement checkbox2 = driver.findElement(By.cssSelector("input[name='checkbox2']"));
+
+        //Then click on checkbox1 if box is not selected
+
+        if (!checkbox1.isSelected()){
+
+            checkbox1.click();
+
+        }
+
+        //Then click on checkbox2 if box is not selected
+
+
+
+        if (!checkbox2.isSelected()){
+
+            checkbox2.click();
+
+        }
+
+
+
+        //Then verify that checkbox1 is checked.
+
+        Assertions.assertTrue(checkbox1.isSelected());
+
+    }
+
 
     @Test
     public void xpath() {
@@ -92,15 +105,6 @@ public class n01_day04_Xpath extends TestBase {
         Assertions.assertTrue(logOutSuc.getText().contains("Login"));
 
     }
-
-   /* @AfterAll
-    public static void tearDown(){
-
-        driver.close();
-
-    }*/
-
-
 
 
 }

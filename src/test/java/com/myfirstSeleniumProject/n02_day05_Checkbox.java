@@ -1,5 +1,6 @@
 package com.myfirstSeleniumProject;
 
+import com.myfirstSeleniumProject.utilities.TestBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class n02_day05_Checkbox {
+public class n02_day05_Checkbox extends TestBase {
 
     //Create a class : CheckBox
 
@@ -24,7 +25,7 @@ public class n02_day05_Checkbox {
 
     //Then verify that checkbox1 is checked.
 
-    static WebDriver driver;
+    /*static WebDriver driver;
 
     @BeforeAll
     public static void setUp() {
@@ -35,7 +36,9 @@ public class n02_day05_Checkbox {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-    }
+    }*/
+
+
 
     @Test
     public void checkBox() {
