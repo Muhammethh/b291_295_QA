@@ -39,12 +39,14 @@ public class n02_day06_Dropdown extends TestBase {
 
         //2. Adım bir obje oluştur Select classında
 
-        Select options = new Select(simpleDropDown);
+       /* Select options = new Select(simpleDropDown);
 
         //3.Adım index numarasına göre elementi seç
 
         options.selectByIndex(1);
-        Thread.sleep(3000);
+        Thread.sleep(3000);*/
+
+        dropdownSelectByIndex(simpleDropDown,1); //bu testbasede oluşturduğumuz method
 
         Assertions.assertTrue(simpleDropDown.getText().contains("1"));
 
@@ -52,13 +54,15 @@ public class n02_day06_Dropdown extends TestBase {
 
         //Select classından objeyi oluşturduğum için o objeyi kullanabilirim
 
-        options.selectByVisibleText("Option 2");
-        Thread.sleep(3000);
+        /*options.selectByVisibleText("Option 2");
+        Thread.sleep(3000);*/
 
+        dropdownSelectByVisibleText(simpleDropDown,"Option 2"); //bu testbasede oluşturduğumuz method
+        Thread.sleep(3000);
         Assertions.assertTrue(simpleDropDown.getText().contains("Option 2"));
 
 
-        // 3.Create method selectByVisibleTextTest Select Option 1 value by visible text
+       /* // 3.Create method selectByVisibleTextTest Select Option 1 value by visible text
 
         options.selectByValue("2");
         Thread.sleep(3000);
@@ -101,7 +105,7 @@ public class n02_day06_Dropdown extends TestBase {
         } else {
             System.out.println("Expected Is Not Equal Actual");
         }
-
+*/
 
     }
 
