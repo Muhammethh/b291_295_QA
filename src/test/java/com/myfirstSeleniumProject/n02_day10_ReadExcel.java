@@ -1,6 +1,6 @@
 package com.myfirstSeleniumProject;
 
-import com.myfirstSeleniumProject.utilities.TestBase;
+
 import org.apache.poi.ss.usermodel.*;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class n02_day10_ReadExcel extends TestBase {
+public class n02_day10_ReadExcel extends com.myfirstSeleniumProject.utilities.TestBase {
 
 
     @Test
