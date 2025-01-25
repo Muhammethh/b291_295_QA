@@ -1,5 +1,8 @@
 package com.myfirstSeleniumProject.utilities;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.*;
@@ -14,12 +17,56 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public abstract class TestBase {
+
+
+   protected ExtentReports extentReports;//raporlamayi baslatir
+   protected ExtentHtmlReporter extentHtmlReporter;// html formatinda rapor olusturur
+   protected ExtentTest extentTest;//Test adımlarina bilgi eklenir
+
+
+    //Extent Report
+    public void createExtentReport(String testName){
+        //ExtentReports classindan bir object olusturarak raporlamayi baslatiriz,
+        // bu objeyi raporlari olusturmak ve yonetmek icin kullanacağız
+        extentReports = new ExtentReports();
+
+        //öncelikle olusturmak istedigimz html reportu projemizde nerede saklamak istiyorsak
+        // bu path i kullanakak bir tane html rapor olusturmaliyiz
+        // bunun icin ExtentHtmlReporter classindan obje olusturmaliyiz
+        // pathin sonunda .html seklinde yazmayi unutmamaliyiz
+        String date = DateTimeFormatter.ofPattern("HHmmssddMMyy").format(LocalDateTime.now());
+        String path = "target/extentReport/" + date + "htmlReport.html";
+        extentHtmlReporter = new ExtentHtmlReporter(path);
+
+        //extentHtmlReporter objesini extentReports objesine ekler
+        // böylece extentReports objesi extentHtmlReporter raporlayicisi vasitasiyla HTML raporlarini olusturur
+        extentReports.attachReporter(extentHtmlReporter);
+
+        //Bu html raporunda görmek isteyebileceğimiz bilgileri asagidaki gibi ekleyebiliriz
+
+        extentReports.setSystemInfo("Test Automation Engineer","Ali Can");
+        extentReports.setSystemInfo("Enviornment","QA");
+        extentReports.setSystemInfo("Browser","Chrome");
+
+        //Html dökümanimizin bilgilerini ayarladik, rapor ismi ve döküman ismi ekleyebiliriz
+        extentHtmlReporter.config().setDocumentTitle("Batch 291 Test Report");
+        extentHtmlReporter.config().setReportName("My Extent Report");
+
+        extentTest = extentReports.createTest(testName,"Test Steps");
+
+    }
+
 
 
     protected static WebDriver driver;
@@ -382,6 +429,85 @@ public abstract class TestBase {
             // Herhangi bir hata oluşursa, bu hata yoksayılır.
         }
     }
+
+
+    /**
+     * Bu method tüm sayfanın ekran görüntüsünü alır
+     */
+    public void takeScreenShots(){
+
+        try {
+            Files.createDirectories(Paths.get("screenshots"));
+
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+
+            Files.write(Paths.get("screenshots/img" + date + ".jpeg") ,ts.getScreenshotAs(OutputType.BYTES));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * BU method verilen webelementin ekran görüntüsünü alır
+     * @param webElement
+     */
+    public void screenShotOfWebelement(WebElement webElement){
+
+        try {
+            Files.createDirectories(Paths.get("screenshot"));
+
+            String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+            Files.write(Paths.get("screenshot/we" + date+ ".png"),webElement.getScreenshotAs(OutputType.BYTES));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    /**
+     * Bu method tüm sayfanın ekran görüntüsünü alır
+     */
+    public void addScreenShotToReport(){
+
+        try {
+            Files.createDirectories(Paths.get("screenshots"));
+
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+
+            Files.write(Paths.get("screenshots/img" + date + ".jpeg") ,ts.getScreenshotAs(OutputType.BYTES));
+
+            extentTest.addScreenCaptureFromPath(System.getProperty("user.dir") + "/screenshots/img" + date + ".jpeg");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void addScreenShotOfWebelementToReport(WebElement webElement){
+
+        try {
+            Files.createDirectories(Paths.get("screenshot"));
+
+            String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+            Files.write(Paths.get("screenshot/we" + date+ ".png"),webElement.getScreenshotAs(OutputType.BYTES));
+
+            extentTest.addScreenCaptureFromPath(System.getProperty("user.dir") + "/screenshot/we" + date+ ".png");
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
 
 
 }

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch 291 Selenium</title>
+    <style>
+        /* Temel Ayarlar */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Merkezde Form Alanı */
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h2, h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+.message {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #e8f5e9;  /* Daha açık bir arka plan rengi */
+    padding: 20px 30px;  /* İç boşlukları biraz daha büyüttüm */
+    border-radius: 8px;  /* Daha yuvarlak köşeler */
+    text-align: center;
+    color: #2e7031;  /* Daha koyu bir metin rengi */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);  /* Gölgelendirme ekledim */
+    border: 1px solid #c8e6c9;  /* İnce bir kenarlık ekledim */
+    font-family: 'Arial', sans-serif;  /* Yazı tipini belirttim */
+    font-size: 16px;  /* Metin boyutunu ayarladım */
+    line-height: 1.5;  /* Metin aralığını ayarladım */
+    display: none; /* Başlangıçta gizli */
+    transition: all 0.3s ease;  /* Geçiş efekti ekledim */
+    position: relative;  /* Diğer öğelerle etkileşimini kontrol etmek için */
+}
+
+
+
+input[type="submit"] {
+    padding: 15px 30px;            /* Butonun iç boşluklarını artırarak daha büyük göstermek */
+    font-size: 1.2rem;            /* Yazı boyutunu artırma */
+    background-color: #007BFF;    /* Mavi bir arkaplan rengi */
+    border: none;                 /* Varsayılan çerçeveyi kaldırma */
+    border-radius: 5px;           /* Yuvarlak köşeler */
+    color: #ffffff;               /* Beyaz yazı rengi */
+    cursor: pointer;              /* İmlecin el simgesine dönüşmesi için */
+    transition: background-color 0.3s; /* Yavaşça renk değişimi efekti */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;    /* Üzerine gelindiğinde daha koyu bir mavi */
+}
+
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+
+        /* ... Diğer CSS kodları ..18:49 22.11.2023. */
+    </style>
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            try {
+                const userName = document.getElementById('username').value;
+                const messageBox = document.getElementById('messageBox');
+
+                // Mesajı oluştur ve web sayfasında göster
+                messageBox.textContent = `Merhaba ${userName}! İşlem başarılı.`;
+                messageBox.style.display = 'block';
+
+                // Sayfanın en üstüne scroll yap
+                window.scrollTo(0, 0);
+            } catch (error) {
+                console.error("Bir hata meydana geldi:", error);
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+ 	<div id="messageBox" class="message"></div>
+
+    <form action="/test-submit" method="post" onsubmit="submitForm(event)">
+
+ <div id="clock"></div>
+
+
+
+
+
+ <img src="https://lms.techproeducation.com/pluginfile.php/1/theme_edumy/headerlogo1/1699911333/tpro%20logo.svg" alt="Açıklama yazısı" 350height="150">
+
+
+
+
+        <h1> Batch 291 Test Otomasyon Formu</h1>
+
+
+<div style="max-width: 800px; margin: 50px auto; background-color: #fff; padding: 20px 40px; border-radius: 8px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);">
+    <h2>Test Senaryoları</h2>
+    <ol>
+        <li>Sayfa başlığının "Batch 291 Selenium" olarak görüntülenip görüntülenmediğini test edin.</li>
+        <li>"Kullanıcı Adı" ve "Şifre" alanlarına faker ile değer girin ve formu gönderin. Başarılı mesajının ("Merhaba [Kullanıcı Adı]! İşlem başarılı.") olarak girilen bilgilerin görüntülenip görüntülenmediğini kontrol edin.</li>
+        <li>"Kullanıcı Adı" ve "Şifre" alanlarını boş bırakın ve formu göndermeye çalışın. İslemin basarili bir sekilde gerceklesmedigini dogrulayin.</li>
+        <li>Cinsiyet radio buttonlarından birini (örneğin "Erkek") seçin ve Seçimin başarılı bir şekilde yapıldığını doğrulayın.</li>
+        <li>"Ülke" drop-down menüsünden bir ülkeyi (örneğin "Türkiye") seçin. Seçimin başarılı bir şekilde yapıldığını doğrulayın.</li>
+        <li>"Dersler" bölümünden birden fazla ders seçin (örneğin "Java" ve "SQL"). Seçimlerin başarılı bir şekilde yapıldığını doğrulayın.</li>
+        <li>Sayfadaki Videoyu baslatin, daha sonra durdurun, daha sonra gönder butonunun etkilesime acik oldugunu doğrulayın.</li>
+        <li>"Yorumlar" alanına bir yorum yazin ve yazinin basarili bir sekilde gönderildigini doğrulayin (JSEXECUTOR).</li>
+ <li>8. inci maddede belirtilen test senaryosunun extent html reporter kullanarak html raporunu alin</li>
+ <li>Extent html reportunuzun sayfa basliginin ve test isminin sizin belirttiginiz isimler oldugunu otomasyon ile test edin</li>
+        
+    </ol>
+</div>
+
+
+
+        <label for="username">Kullanıcı Adı:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Şifre:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label>Cinsiyet:</label>
+        <div class="radio-group">
+            <label>
+                <input type="radio" id="male" name="gender" value="male">
+                Erkek
+            </label>
+            <label>
+                <input type="radio" id="female" name="gender" value="female">
+                Kadın
+            </label>
+        </div>
+        <br>
+
+        <label for="birthdate">Doğum Tarihi:</label>
+        <input type="date" id="birthdate" name="birthdate"><br><br>
+
+        <label for="country">Ülke:</label>
+        <select id="country" name="country">
+            <option value="turkey">Türkiye</option>
+            <option value="usa">ABD</option>
+            <option value="uk">İngiltere</option>
+        </select><br><br>
+
+        <label for="Course">Batch:</label>
+        <select id="course" name="DTNT">
+            <option value="DayTime">Day Time</option>
+            <option value="NightTime">Night Time</option>
+        </select><br><br>
+
+        <h3> Dersler </h3>
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" id="java" name="tech" value="Java">
+                Java
+            </label>
+            <label>
+                <input type="checkbox" id="html-css" name="tech" value="Selenium">
+                HTML/CSS
+            </label>
+            <label>
+                <input type="checkbox" id="sdlc" name="tech" value="SDLC">
+                SDLC
+            </label>
+   
+            <label>
+                <input type="checkbox" id="sql" name="tech" value="SQL">
+                SQL
+            </label>
+
+        </div>
+        <br>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vElDevkTzn8" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+<div id="imageContainer">
+  <script>
+    // Shadow root oluşturmak için JavaScript kullanılıyor.
+    document.addEventListener("DOMContentLoaded", function() {
+      var container = document.getElementById("imageContainer");
+      var shadow = container.attachShadow({mode: 'open'});
+
+      // Shadow DOM içinde img elementi oluşturuluyor.
+      var img = document.createElement("img");
+      img.src = "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif";
+      img.alt = "Açıklama yazısı";
+      img.width = 150;
+      img.height = 150;
+      img.id = "uniqueImageId"; // Elemente bir ID ekleniyor.
+
+      // Shadow DOM içinde paragraf elementi oluşturuluyor.
+      var paragraph = document.createElement("p");
+      paragraph.textContent = "    "; // Paragrafın içeriği.
+      paragraph.style.color = "red";
+
+      // Elementler shadow root'a ekleniyor.
+      shadow.appendChild(img);
+      shadow.appendChild(paragraph);
+    });
+  </script>
+</div>
+
+
+
+
+
+
+
+        <label for="comments">Yorumlar:</label><br>
+        <textarea id="comments" name="comments" rows="4" cols="50" placeholder=" "      ></textarea><br><br>
+
+        <input type="submit" value="Gönder">
+
+
+
+
+    </form>
+
+
+
+
+
+</body>
+
+</html> 
