@@ -10,8 +10,6 @@
 
     public class day11_ExcelWrite {
 
-
-
         //Create a new class: WriteExcel
         //Create a new method: writeExcel()
         //Store the path of the file as string and open the file

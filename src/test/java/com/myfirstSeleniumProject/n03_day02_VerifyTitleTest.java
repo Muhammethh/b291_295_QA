@@ -1,5 +1,7 @@
 package com.myfirstSeleniumProject;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -40,6 +42,27 @@ public class n03_day02_VerifyTitleTest {
 
         //ODEV
         //AYNISINI amazon için yap
+
+
+    }
+
+
+    @Test
+    public void amazon() {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://amazon.com");
+
+        String actualTitle = driver.getTitle();
+
+        String expectedTitle = "Amazon.com. Spend less. Smile more.";
+
+        Assertions.assertEquals(expectedTitle,actualTitle);
+
+        driver.quit();
 
 
     }

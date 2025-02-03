@@ -1,6 +1,7 @@
 package com.myfirstSeleniumProject;
 
 import com.myfirstSeleniumProject.utilities.TestBase;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -68,7 +69,21 @@ public class n01_day12_Actions03 extends TestBase {
     Then verify the alert message is "You selected a context menu"
     Then accept the alert*/
 
+    @Test
+    public void test01() {
+
+        driver.get("https://testcenter.techproeducation.com/index.php?page=context-menu");
 
 
+        Actions actions = new Actions(driver);
 
+        actions.contextClick(driver.findElement(By.id("hot-spot"))).perform();
+
+        String actualAlertMessage = driver.switchTo().alert().getText();
+        String expectedAlertMessage = "You selected a context menu";
+
+        Assertions.assertEquals(expectedAlertMessage,actualAlertMessage);
+
+        driver.switchTo().alert().accept();
+    }
 }
